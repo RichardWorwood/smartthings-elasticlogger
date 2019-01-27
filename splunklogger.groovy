@@ -94,7 +94,7 @@ section ("Elastic Server") {
     input "elastic_host", "text", title: "Elastic Hostname/IP", required: true
     input "use_ssl", "boolean", title: "Use SSL?", required: true
     input "elastic_port", "number", title: "Elastic Port", required: true
-    input "auth_token", "text", title: "Authentication Token", required: true
+    input "auth_token", "text", title: "Authentication Token", required: false
     input "index_name", "text", title: "Index Name", required: true
 }
 }
@@ -210,7 +210,7 @@ def result = (new physicalgraph.device.HubAction([
 method: "POST",
 path: "/${index_name}",
 headers: [
-'Authorization': "Basic ${auth_token}",
+//'Authorization': "Basic ${auth_token}",
 "Content-Length":"${length}",
 HOST: "${splunk_server}",
 "Content-Type":"application/json",
